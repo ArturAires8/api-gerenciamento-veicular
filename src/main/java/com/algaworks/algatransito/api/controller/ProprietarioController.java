@@ -27,5 +27,4 @@ public class ProprietarioController {
         return Arrays.asList(proprietario1, proprietario2);
     }
 
-
 }
