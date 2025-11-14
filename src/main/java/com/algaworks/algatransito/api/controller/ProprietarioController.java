@@ -3,7 +3,6 @@ package com.algaworks.algatransito.api.controller;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +47,13 @@ public class ProprietarioController {
         return ResponseEntity.ok(proprietarioAtualizado);
     }
 
+    @DeleteMapping("/{proprietarioId}")
+    public ResponseEntity<Void> remover(@PathVariable Long proprietarioId) {
+        if (!proprietarioRepository.existsById(proprietarioId)) {
+            return ResponseEntity.notFound().build();
+        }
+        proprietarioRepository.deleteById(proprietarioId);
+        return ResponseEntity.noContent().build();
+    }
 }
 
