@@ -27,7 +27,6 @@ public class Veiculo {
     private String modelo;
     private String placa;
 
-
     @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
 
@@ -36,5 +35,12 @@ public class Veiculo {
 
     @OneToMany(mappedBy = "veiculo")
     private List<Autuacao> autuacoes = new ArrayList<>();
+
+    public Autuacao adicionarAutuacao(Autuacao autuacao) {
+        autuacao.setDataOcorrencia(OffsetDateTime.now());
+        autuacao.setVeiculo(this);
+        getAutuacoes().add(autuacao);
+        return autuacao;
+    }
 
 }
